@@ -260,6 +260,10 @@ $databases = [];
  */
 # $settings['config_sync_directory'] = '/directory/outside/webroot';
 
+if (empty($settings['config_sync_directory'])) {
+  $settings['config_sync_directory'] = '../config/sync';
+}
+
 /**
  * Settings:
  *
@@ -288,7 +292,7 @@ $databases = [];
  *   $settings['hash_salt'] = file_get_contents('/home/example/salt.txt');
  * @endcode
  */
-$settings['hash_salt'] = '';
+$settings['hash_salt'] = '275857f9eff1075160fcf9d18d2585891ab295d2c50d782c60b9d37452a6d828';
 
 /**
  * Deployment identifier.
@@ -612,7 +616,7 @@ $settings['update_free_access'] = FALSE;
  * See https://www.drupal.org/documentation/modules/file for more information
  * about securing private files.
  */
-# $settings['file_private_path'] = '';
+$settings['file_private_path'] = '../private';
 
 /**
  * Temporary file path:
@@ -877,6 +881,7 @@ $settings['migrate_node_migrate_type_classic'] = FALSE;
 
 // Automatically generated include for settings managed by ddev.
 if (getenv('IS_DDEV_PROJECT') == 'true' && file_exists(__DIR__ . '/settings.ddev.php')) {
+  $settings['container_yamls'][] = DRUPAL_ROOT . '/sites/main_development.services.yml';
   include __DIR__ . '/settings.ddev.php';
 }
 
